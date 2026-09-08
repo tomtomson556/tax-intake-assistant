@@ -18,6 +18,8 @@ def test_intake_form_is_served() -> None:
     assert response.status_code == 200
     assert "Unstructured client request" in response.text
     assert 'name="request_text"' in response.text
+    assert "deterministic FakeProvider" in response.text
+    assert "not a real AI model" in response.text
 
 
 def test_empty_submit_returns_form_error() -> None:
@@ -33,6 +35,8 @@ def test_draft_ready_case_shows_unreviewed_internal_draft() -> None:
         response = client.post("/", data={"request_text": DRAFT_READY_REQUEST})
     assert response.status_code == 200
     assert "Readiness: DRAFT_READY" in response.text
+    assert "deterministic FakeProvider" in response.text
+    assert "Follow-up questions" not in response.text
     assert "Status: UNREVIEWED" in response.text
     assert 'id="internal-draft"' in response.text
     assert "INTERNAL FILE NOTE" in response.text
@@ -45,6 +49,10 @@ def test_clarification_case_does_not_include_a_draft() -> None:
     assert response.status_code == 200
     assert "Readiness: CLARIFICATION_REQUIRED" in response.text
     assert "(blocking)" in response.text
+    assert "Amount of the expense is missing." in response.text
+    assert "What is the amount of the expense?" in response.text
+    assert "What is the date of the transaction?" in response.text
+    assert "Follow-up questions" in response.text
     assert 'id="internal-draft"' not in response.text
     assert "UNREVIEWED" not in response.text
 

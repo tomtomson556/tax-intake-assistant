@@ -3,9 +3,12 @@ from tax_intake_assistant.models import (
     DraftStatus,
     ProcessedCase,
     ReadinessState,
+    StructuredAssessment,
 )
 from tax_intake_assistant.provider import Provider
 from tax_intake_assistant.readiness import decide_readiness
+
+_MISSING_SUFFIX = " is missing"
 
 
 class InvalidRequestError(ValueError):
@@ -34,4 +37,28 @@ def process_intake(request_text: str, provider: Provider) -> ProcessedCase:
         assessment=assessment,
         readiness=readiness,
         draft=draft,
+        follow_up_questions=_follow_up_questions(assessment, readiness),
     )
+
+
+def _follow_up_questions(
+    assessment: StructuredAssessment, readiness: ReadinessState
+) -> list[str]:
+    if readiness != ReadinessState.CLARIFICATION_REQUIRED:
+        return []
+    return [
+        _follow_up_question(item.description)
+        for item in assessment.missing_information
+        if item.blocking
+    ]
+
+
+def _follow_up_question(description: str) -> str:
+    text = description.strip().rstrip(".")
+    if text.endswith("?"):
+        return text
+    if text.lower().endswith(_MISSING_SUFFIX):
+        subject = text[: -len(_MISSING_SUFFIX)].strip()
+        if subject:
+            return f"What is the {subject[0].lower() + subject[1:]}?"
+    return f"Can you provide this missing information: {text}?"

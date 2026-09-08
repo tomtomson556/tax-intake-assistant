@@ -46,6 +46,7 @@ class ProcessedCase(BaseModel):
     assessment: StructuredAssessment
     readiness: ReadinessState
     draft: Draft | None = None
+    follow_up_questions: list[str] = []
 
     @model_validator(mode="after")
     def draft_only_when_ready_and_unreviewed(self) -> "ProcessedCase":

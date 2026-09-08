@@ -31,11 +31,18 @@ def test_escalate_does_not_compose_a_draft(make_assessment) -> None:
         make_assessment(
             out_of_scope=True,
             out_of_scope_reason="Matter is outside ordinary operational tax work.",
+            missing_information=[
+                MissingInformation(
+                    description="Amount of the expense is missing.",
+                    blocking=True,
+                ),
+            ],
         )
     )
     processed = process_intake("Client faces a criminal investigation.", provider)
     assert processed.readiness == ReadinessState.ESCALATE
     assert processed.draft is None
+    assert processed.follow_up_questions == []
     assert provider.draft_calls == 0
 
 
@@ -43,13 +50,21 @@ def test_clarification_does_not_compose_a_draft(make_assessment) -> None:
     provider = RecordingProvider(
         make_assessment(
             missing_information=[
-                MissingInformation(description="Amount missing", blocking=True),
+                MissingInformation(
+                    description="Amount of the expense is missing.",
+                    blocking=True,
+                ),
+                MissingInformation(
+                    description="Written confirmation not on file",
+                    blocking=False,
+                ),
             ]
         )
     )
     processed = process_intake("Client bought a laptop.", provider)
     assert processed.readiness == ReadinessState.CLARIFICATION_REQUIRED
     assert processed.draft is None
+    assert processed.follow_up_questions == ["What is the amount of the expense?"]
     assert provider.draft_calls == 0
 
 
@@ -66,6 +81,7 @@ def test_draft_ready_produces_unreviewed_internal_draft(make_assessment) -> None
         "Client bought a van on 2024-03-12 for EUR 28500."
     )
     assert processed.readiness == ReadinessState.DRAFT_READY
+    assert processed.follow_up_questions == []
     assert processed.draft is not None
     assert processed.draft.status == DraftStatus.UNREVIEWED
     assert processed.draft.body == "INTERNAL FILE NOTE — not client communication"

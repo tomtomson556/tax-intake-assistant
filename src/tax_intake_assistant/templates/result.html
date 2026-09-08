@@ -29,6 +29,14 @@
     {% else %}
       <p class="muted">None.</p>
     {% endif %}
+    {% if case.follow_up_questions %}
+      <h2>Follow-up questions</h2>
+      <ul>
+        {% for question in case.follow_up_questions %}
+          <li>{{ question }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
     <h2>Review points</h2>
     {% if case.assessment.review_points %}
       <ul>
