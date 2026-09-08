@@ -35,6 +35,7 @@ def test_escalate_does_not_compose_a_draft(make_assessment) -> None:
                 MissingInformation(
                     description="Amount of the expense is missing.",
                     blocking=True,
+                    follow_up_question="What is the amount of the expense?",
                 ),
             ],
         )
@@ -53,10 +54,12 @@ def test_clarification_does_not_compose_a_draft(make_assessment) -> None:
                 MissingInformation(
                     description="Amount of the expense is missing.",
                     blocking=True,
+                    follow_up_question="What is the amount of the expense?",
                 ),
                 MissingInformation(
                     description="Written confirmation not on file",
                     blocking=False,
+                    follow_up_question="Can you provide written confirmation?",
                 ),
             ]
         )

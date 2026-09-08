@@ -31,7 +31,7 @@ Every processed case includes:
 
 - `case_summary`
 - `facts`
-- `missing_information` (each item has a `blocking` indicator)
+- `missing_information` (each item has a `blocking` indicator; relevant items include a concrete `follow_up_question`)
 - `review_points`
 - `uncertainties`
 - `out_of_scope`
@@ -46,7 +46,7 @@ Exactly one of:
 | State | Meaning |
 | --- | --- |
 | `ESCALATE` | A human must take over. Do not draft. |
-| `CLARIFICATION_REQUIRED` | At least one blocking information gap. Do not draft. Expose concrete follow-up questions derived from those blocking items, not only descriptions of the gaps. |
+| `CLARIFICATION_REQUIRED` | At least one blocking information gap. Do not draft. Expose the concrete follow-up questions from those blocking items, not only descriptions of the gaps. |
 | `DRAFT_READY` | The case is sufficient to produce an internal draft. |
 
 Exact rule, in this order:

@@ -16,6 +16,7 @@ class DraftStatus(StrEnum):
 class MissingInformation(BaseModel):
     description: str
     blocking: bool
+    follow_up_question: str | None = None
 
 
 class StructuredAssessment(BaseModel):

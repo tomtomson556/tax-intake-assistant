@@ -51,6 +51,7 @@ class FakeProvider:
                 MissingInformation(
                     description="Amount of the expense is missing.",
                     blocking=True,
+                    follow_up_question="What is the amount of the expense?",
                 )
             )
         if _DATE_RE.search(request_text) is None:
@@ -58,6 +59,7 @@ class FakeProvider:
                 MissingInformation(
                     description="Date of the transaction is missing.",
                     blocking=True,
+                    follow_up_question="What is the date of the transaction?",
                 )
             )
 
