@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block title %}{{ case.readiness }} — Tax Intake Assistant{% endblock %}
+{% block content %}
+  <p class="banner panel">Internal use only. Nothing here is client-ready or delivered automatically.</p>
+  <h1>Structured assessment</h1>
+  <p class="status {{ case.readiness }}" role="status">Readiness: {{ case.readiness }}</p>
+
+  <section>
+    <h2>Submitted request</h2>
+    <p>{{ case.request_text }}</p>
+  </section>
+
+  <section>
+    <h2>Case summary</h2>
+    <p>{{ case.assessment.case_summary }}</p>
+    <h2>Facts</h2>
+    <ul>
+      {% for fact in case.assessment.facts %}
+        <li>{{ fact }}</li>
+      {% endfor %}
+    </ul>
+    <h2>Missing information</h2>
+    {% if case.assessment.missing_information %}
+      <ul>
+        {% for item in case.assessment.missing_information %}
+          <li>{{ item.description }}{% if item.blocking %} (blocking){% endif %}</li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p class="muted">None.</p>
+    {% endif %}
+    {% if case.follow_up_questions %}
+      <h2>Follow-up questions</h2>
+      <ul>
+        {% for question in case.follow_up_questions %}
+          <li>{{ question }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+    <h2>Review points</h2>
+    {% if case.assessment.review_points %}
+      <ul>
+        {% for point in case.assessment.review_points %}
+          <li>{{ point }}</li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p class="muted">None.</p>
+    {% endif %}
+    <h2>Uncertainties</h2>
+    {% if case.assessment.uncertainties %}
+      <ul>
+        {% for item in case.assessment.uncertainties %}
+          <li>{{ item }}</li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p class="muted">None.</p>
+    {% endif %}
+    {% if case.assessment.out_of_scope %}
+      <h2>Out of scope</h2>
+      <p>{{ case.assessment.out_of_scope_reason }}</p>
+    {% endif %}
+  </section>
+
+  {% if case.draft %}
+    <section id="internal-draft">
+      <h2>Internal draft</h2>
+      <p><strong>Status: {{ case.draft.status }}</strong></p>
+      <pre>{{ case.draft.body }}</pre>
+    </section>
+  {% endif %}
+
+  <a class="back" href="/">Assess another request</a>
+{% endblock %}
