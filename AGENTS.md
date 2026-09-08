@@ -1,6 +1,6 @@
 # Agent instructions
 
-Shared by Cursor and Codex. This file is an index, not a handbook. Do not copy it into `.cursor/rules` or a large `.codex/config.toml`.
+Shared task and context router for Cursor and Codex. Keep repository-wide direction here and reusable workflows in project skills.
 
 ## Source of truth
 
@@ -16,19 +16,19 @@ Do not weaken the invariants in `PRODUCT.md`. Do not restate product rules or mi
 
 Before recommending a branch, architecture, provider, security, persistence, deployment, cloud, or system-wide dependency change, inspect current `main`, open pull requests, local git state, the canonical files above, and the affected code and tests.
 
-## Current work
+## Task routing
 
-Follow [`ROADMAP.md`](ROADMAP.md) for what is done, next, and later. Do not add a real AI provider, database, RAG, Docker, cloud, MCP server, or custom skills unless the current milestone requires it.
+- Feature or behavior work: follow [`.agents/skills/feature-work/SKILL.md`](.agents/skills/feature-work/SKILL.md).
+- Product scope and hard invariants: read [`PRODUCT.md`](PRODUCT.md).
+- Milestone scope and sequencing: read [`ROADMAP.md`](ROADMAP.md).
+- Setup and required checks: read [`README.md`](README.md).
+- Otherwise, load only the affected code, tests, and accepted ADRs needed for the task.
 
-## Layout
+## Project map
 
 - Package: `src/tax_intake_assistant/`
 - Tests: `tests/`
 - Eval cases: `evals/cases/`
-
-## Checks
-
-`ruff check .` and `pytest`. See [`README.md`](README.md).
 
 ## Git and pull requests
 
