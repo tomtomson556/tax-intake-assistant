@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Tax Intake Assistant{% endblock %}</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #f6f4ef;
+        --card: #fff;
+        --ink: #1f2933;
+        --muted: #52606d;
+        --line: #d9d2c5;
+        --accent: #1f4e5f;
+        --danger: #8b1e3f;
+        --warn: #8a5800;
+        --ok: #1b6b3a;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: "Source Serif 4", "Iowan Old Style", "Georgia", serif;
+        background: var(--bg);
+        color: var(--ink);
+        line-height: 1.5;
+      }
+      main {
+        max-width: 44rem;
+        margin: 0 auto;
+        padding: 2rem 1.25rem 3rem;
+      }
+      h1, h2 { font-weight: 650; letter-spacing: -0.02em; }
+      h1 { font-size: 1.75rem; margin: 0 0 0.35rem; }
+      h2 { font-size: 1.1rem; margin: 1.5rem 0 0.5rem; }
+      .lede, .muted { color: var(--muted); }
+      .lede { margin: 0 0 1.25rem; }
+      form, section, .panel {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 0.6rem;
+        padding: 1rem 1.1rem;
+      }
+      label { display: block; font-weight: 650; margin-bottom: 0.4rem; }
+      textarea {
+        width: 100%;
+        min-height: 12rem;
+        padding: 0.75rem;
+        border: 1px solid var(--line);
+        border-radius: 0.4rem;
+        font: inherit;
+        resize: vertical;
+      }
+      button, .back {
+        display: inline-block;
+        margin-top: 0.85rem;
+        background: var(--accent);
+        color: #fff;
+        border: 0;
+        border-radius: 0.4rem;
+        padding: 0.55rem 0.95rem;
+        font: inherit;
+        cursor: pointer;
+        text-decoration: none;
+      }
+      .error {
+        background: #fdecef;
+        border: 1px solid #e7b0bd;
+        color: var(--danger);
+        border-radius: 0.5rem;
+        padding: 0.75rem 0.9rem;
+        margin-bottom: 1rem;
+      }
+      .status {
+        font-size: 1.15rem;
+        font-weight: 700;
+        margin: 0 0 1rem;
+      }
+      .status.ESCALATE { color: var(--danger); }
+      .status.CLARIFICATION_REQUIRED { color: var(--warn); }
+      .status.DRAFT_READY { color: var(--ok); }
+      ul { margin: 0.2rem 0 0; padding-left: 1.2rem; }
+      pre {
+        white-space: pre-wrap;
+        font-family: ui-monospace, "Cascadia Code", "SFMono-Regular", monospace;
+        font-size: 0.92rem;
+        margin: 0;
+      }
+      .banner {
+        background: #fff6e5;
+        border-color: #e6c98a;
+        color: #6a4300;
+        margin-bottom: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      {% block content %}{% endblock %}
+    </main>
+  </body>
+</html>

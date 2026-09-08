@@ -8,13 +8,11 @@ Canonical V1 product definition, shared docs, Python package skeleton, bootstrap
 
 This milestone does **not** include the business workflow.
 
-## M1 — Deterministic vertical slice (next)
+## M1 — Deterministic vertical slice (completed)
 
 First application path with a **FakeProvider** and a small **server-rendered UI**: unstructured request in, structured assessment, exact readiness gate, draft only when `DRAFT_READY`, every draft `UNREVIEWED`.
 
-**Not implemented yet.**
-
-## M2 — One real provider and eval set
+## M2 — One real provider and eval set (next)
 
 Exactly **one** real provider, structured output, prompt version, and 20–30 eval cases.
 
