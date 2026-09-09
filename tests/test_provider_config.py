@@ -44,8 +44,10 @@ def test_openai_with_key_builds_openai_provider(
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
     monkeypatch.setenv("TAX_INTAKE_PROVIDER", "openai")
-    monkeypatch.setenv("OPENAI_API_KEY", "sk-test")
-    assert isinstance(build_provider(), OpenAIProvider)
+    monkeypatch.setenv("OPENAI_API_KEY", "sk-from-build")
+    provider = build_provider()
+    assert isinstance(provider, OpenAIProvider)
+    assert provider._client.api_key == "sk-from-build"
 
 
 def test_runtime_app_fails_before_serving_when_openai_key_missing(

@@ -1,7 +1,11 @@
 import pytest
 
 from tax_intake_assistant.models import DraftStatus, MissingInformation, ReadinessState
-from tax_intake_assistant.workflow import InvalidRequestError, process_intake
+from tax_intake_assistant.workflow import (
+    MAX_REQUEST_CHARS,
+    InvalidRequestError,
+    process_intake,
+)
 
 
 class RecordingProvider:
@@ -89,3 +93,10 @@ def test_draft_ready_produces_unreviewed_internal_draft(make_assessment) -> None
     assert processed.draft.status == DraftStatus.UNREVIEWED
     assert processed.draft.body == "INTERNAL FILE NOTE — not client communication"
     assert provider.draft_calls == 1
+
+
+def test_overlong_request_is_rejected(make_assessment) -> None:
+    provider = RecordingProvider(make_assessment())
+    with pytest.raises(InvalidRequestError, match="maximum length"):
+        process_intake("x" * (MAX_REQUEST_CHARS + 1), provider)
+    assert provider.draft_calls == 0

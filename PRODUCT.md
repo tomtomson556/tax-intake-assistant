@@ -31,7 +31,7 @@ Every processed case includes:
 
 - `case_summary`
 - `facts`
-- `missing_information` (each item has a `blocking` indicator; relevant items include a concrete `follow_up_question`)
+- `missing_information` (each item has a `blocking` indicator; blocking items require a concrete `follow_up_question`)
 - `review_points`
 - `uncertainties`
 - `out_of_scope`
@@ -73,6 +73,7 @@ These are non-negotiable for V1:
 - The readiness decision is deterministic application code and follows the exact gate above.
 - Drafts are produced only for `DRAFT_READY`.
 - Every draft starts as `UNREVIEWED`.
+- Blocking missing-information items require a concrete follow-up question.
 - No autonomous tax advice.
 - No automatic client delivery.
 

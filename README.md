@@ -2,7 +2,7 @@
 
 AI-assisted intake and drafting for German tax advisory teams.
 
-**Status:** M2 one real provider and eval set. OpenAI (`gpt-5.6-sol`) plus FakeProvider, exact readiness gate, and a small server-rendered UI. Drafts are produced only for `DRAFT_READY` and start as `UNREVIEWED`.
+**Status:** M2 in progress. OpenAI (`gpt-5.6-sol`) plus FakeProvider, exact readiness gate, and a small server-rendered UI. Drafts are produced only for `DRAFT_READY` and start as `UNREVIEWED`.
 
 - Product (V1): [`PRODUCT.md`](PRODUCT.md)
 - Sequencing: [`ROADMAP.md`](ROADMAP.md)
@@ -35,6 +35,8 @@ Copy [`.env.example`](.env.example) only as documentation. Export variables in t
 | `openai` | `OpenAIProvider` with hardcoded model `gpt-5.6-sol` and `reasoning.effort=medium`. Requires `OPENAI_API_KEY`. Missing key fails at process start. |
 
 Tests always inject `FakeProvider` and do not make live API calls.
+
+Requests longer than 20000 characters are rejected before a provider call. The OpenAI client uses a 120-second timeout, `max_retries=0`, and `max_output_tokens` on assessment (8192) and draft (4096) calls. That bounds the SDK's 10-minute default timeout and its two timeout retries. There is no auth or rate-limit layer in M2.
 
 ## Run
 

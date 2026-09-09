@@ -44,4 +44,4 @@ export OPENAI_API_KEY=...
 python -m evals.run
 ```
 
-The runner writes metadata (provider, model `gpt-5.6-sol`, reasoning effort `medium`, prompt version, git commit) plus per-case structured assessments to `evals/results/`. It does not print full request texts. A provider error is stored as `status=provider_error`, not as `ESCALATE`.
+The runner calls `structure_case` and `decide_readiness` only. It does **not** generate drafts. It writes metadata (provider, model `gpt-5.6-sol`, reasoning effort `medium`, prompt version, git commit) plus per-case structured assessments to `evals/results/`. It does not print full request texts. A provider error is stored as `status=provider_error`, not as `ESCALATE`. If any case hits a provider error, the process exits with status 1. Readiness mismatches against the golden are reported, but they do not fail the process (that is M3).

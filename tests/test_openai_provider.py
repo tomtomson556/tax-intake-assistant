@@ -8,12 +8,16 @@ from tax_intake_assistant.models import (
     StructuredAssessment,
 )
 from tax_intake_assistant.openai_provider import (
+    ASSESSMENT_MAX_OUTPUT_TOKENS,
+    DRAFT_MAX_OUTPUT_TOKENS,
+    OPENAI_MAX_RETRIES,
     OPENAI_MODEL,
+    OPENAI_TIMEOUT_SECONDS,
     REASONING_EFFORT,
     OpenAIProvider,
 )
 from tax_intake_assistant.prompts import PROMPT_VERSION
-from tax_intake_assistant.provider import ProviderError
+from tax_intake_assistant.provider import ProviderConfigError, ProviderError
 from tax_intake_assistant.workflow import process_intake
 
 VALID_ASSESSMENT = StructuredAssessment(
@@ -83,6 +87,7 @@ def test_structure_case_uses_structured_output_and_fixed_model() -> None:
     assert kwargs["text_format"] is StructuredAssessment
     assert kwargs["reasoning"] == {"effort": REASONING_EFFORT}
     assert kwargs["store"] is False
+    assert kwargs["max_output_tokens"] == ASSESSMENT_MAX_OUTPUT_TOKENS
     assert PROMPT_VERSION == "m2-v1"
 
 
@@ -182,6 +187,27 @@ def test_compose_draft_uses_same_model_and_does_not_store() -> None:
     assert kwargs["model"] == OPENAI_MODEL
     assert kwargs["reasoning"] == {"effort": REASONING_EFFORT}
     assert kwargs["store"] is False
+    assert kwargs["max_output_tokens"] == DRAFT_MAX_OUTPUT_TOKENS
+
+
+def test_openai_provider_requires_api_key_without_client(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    monkeypatch.delenv("OPENAI_API_KEY", raising=False)
+    with pytest.raises(ProviderConfigError, match="OPENAI_API_KEY"):
+        OpenAIProvider()
+
+
+def test_openai_client_uses_passed_key_timeout_and_no_retries(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    monkeypatch.setenv("OPENAI_API_KEY", "sk-env")
+    provider = OpenAIProvider(api_key="sk-test")
+    assert provider._client.api_key == "sk-test"
+    assert provider._client.max_retries == OPENAI_MAX_RETRIES
+    timeout = provider._client.timeout
+    timeout_seconds = getattr(timeout, "timeout", timeout)
+    assert timeout_seconds == OPENAI_TIMEOUT_SECONDS
 
 
 def test_blocking_assessment_from_openai_still_uses_application_gate() -> None:

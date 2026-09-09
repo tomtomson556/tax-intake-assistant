@@ -1,5 +1,3 @@
-import os
-
 from pydantic import ValidationError
 
 from tax_intake_assistant.models import StructuredAssessment
@@ -13,20 +11,37 @@ from tax_intake_assistant.provider import ProviderConfigError, ProviderError
 
 OPENAI_MODEL = "gpt-5.6-sol"
 REASONING_EFFORT = "medium"
+OPENAI_TIMEOUT_SECONDS = 120.0
+OPENAI_MAX_RETRIES = 0
+ASSESSMENT_MAX_OUTPUT_TOKENS = 8192
+DRAFT_MAX_OUTPUT_TOKENS = 4096
 _REASONING = {"effort": REASONING_EFFORT}
 
 
 class OpenAIProvider:
     """OpenAI Responses API provider. Does not decide readiness."""
 
-    def __init__(self, client: object | None = None) -> None:
+    def __init__(
+        self,
+        client: object | None = None,
+        *,
+        api_key: str | None = None,
+    ) -> None:
         if client is not None:
             self._client = client
             return
-        api_key = _require_api_key()
+        key = (api_key or "").strip()
+        if not key:
+            raise ProviderConfigError(
+                "TAX_INTAKE_PROVIDER=openai requires OPENAI_API_KEY."
+            )
         from openai import OpenAI
 
-        self._client = OpenAI(api_key=api_key)
+        self._client = OpenAI(
+            api_key=key,
+            timeout=OPENAI_TIMEOUT_SECONDS,
+            max_retries=OPENAI_MAX_RETRIES,
+        )
 
     def structure_case(self, request_text: str) -> StructuredAssessment:
         try:
@@ -37,6 +52,7 @@ class OpenAIProvider:
                 text_format=StructuredAssessment,
                 reasoning=_REASONING,
                 store=False,
+                max_output_tokens=ASSESSMENT_MAX_OUTPUT_TOKENS,
             )
         except (ProviderError, ProviderConfigError):
             raise
@@ -57,6 +73,7 @@ class OpenAIProvider:
                 input=draft_input(request_text, assessment.model_dump_json()),
                 reasoning=_REASONING,
                 store=False,
+                max_output_tokens=DRAFT_MAX_OUTPUT_TOKENS,
             )
         except (ProviderError, ProviderConfigError):
             raise
@@ -66,15 +83,6 @@ class OpenAIProvider:
             ) from exc
         _raise_if_unusable(response, expect_parsed=False)
         return _output_text(response)
-
-
-def _require_api_key() -> str:
-    api_key = (os.environ.get("OPENAI_API_KEY") or "").strip()
-    if not api_key:
-        raise ProviderConfigError(
-            "TAX_INTAKE_PROVIDER=openai requires OPENAI_API_KEY."
-        )
-    return api_key
 
 
 def _raise_if_unusable(response: object, *, expect_parsed: bool) -> None:

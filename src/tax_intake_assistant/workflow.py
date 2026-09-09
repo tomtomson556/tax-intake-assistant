@@ -13,10 +13,18 @@ class InvalidRequestError(ValueError):
     """Raised when the unstructured request cannot be processed."""
 
 
+MAX_REQUEST_CHARS = 20_000
+
+
 def validate_request(request_text: str) -> str:
     cleaned = request_text.strip()
     if not cleaned:
         raise InvalidRequestError("A client request is required.")
+    if len(cleaned) > MAX_REQUEST_CHARS:
+        raise InvalidRequestError(
+            "The client request exceeds the maximum length of "
+            f"{MAX_REQUEST_CHARS} characters."
+        )
     return cleaned
 
 
