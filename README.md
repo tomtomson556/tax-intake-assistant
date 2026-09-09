@@ -2,7 +2,7 @@
 
 AI-assisted intake and drafting for German tax advisory teams.
 
-**Status:** M2 in progress. OpenAI (`gpt-5.6-sol`) plus FakeProvider, exact readiness gate, and a small server-rendered UI. Drafts are produced only for `DRAFT_READY` and start as `UNREVIEWED`.
+**Status:** M2 completed, M3 next. OpenAI (`gpt-5.6-sol`) plus FakeProvider, exact readiness gate, and a small server-rendered UI. Drafts are produced only for `DRAFT_READY` and start as `UNREVIEWED`.
 
 - Product (V1): [`PRODUCT.md`](PRODUCT.md)
 - Sequencing: [`ROADMAP.md`](ROADMAP.md)
