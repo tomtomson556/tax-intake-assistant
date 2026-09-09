@@ -1,0 +1,30 @@
+{
+  "id": "m2-05",
+  "title": "Fortbildung vollständig angegeben",
+  "case_type": "training",
+  "tags": [],
+  "request_text": "Die fiktive Mandantin Mira Stahl (Stahl Handwerk GmbH) hat am 18.04.2025 ein zweitägiges Seminar 'DATEV Lohn im Betrieb' in Köln besucht. Teilnahmegebühr 620 EUR netto zzgl. 19% USt, Bahn 89 EUR, Übernachtung 95 EUR. Das Seminar dient der betrieblichen Buchhaltung, keine Umschulung. Rechnung des Anbieters Fortbildung Nord GmbH liegt vor. Bitte internes File Note.",
+  "golden": {
+    "must_contain_facts": [
+      "Seminar DATEV Lohn im Betrieb",
+      "18.04.2025 in Köln",
+      "Teilnahmegebühr 620 EUR netto",
+      "Bahn 89 EUR",
+      "Übernachtung 95 EUR",
+      "betriebliche Veranlassung"
+    ],
+    "must_not_invent": [
+      "private Fortbildung",
+      "andere Seminarkosten",
+      "Verpflegung"
+    ],
+    "missing_information": [],
+    "review_point_concepts": [
+      "betriebliche Veranlassung der Fortbildung",
+      "Belege prüfen"
+    ],
+    "uncertainty_concepts": [],
+    "out_of_scope": false,
+    "out_of_scope_reason_concept": null
+  }
+}

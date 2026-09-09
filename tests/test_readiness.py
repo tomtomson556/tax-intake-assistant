@@ -7,7 +7,11 @@ def test_out_of_scope_escalates(make_assessment) -> None:
         out_of_scope=True,
         out_of_scope_reason="Criminal tax matter.",
         missing_information=[
-            MissingInformation(description="Amount missing", blocking=True),
+            MissingInformation(
+                description="Amount missing",
+                blocking=True,
+                follow_up_question="What is the amount?",
+            ),
         ],
     )
     assert decide_readiness(assessment) == ReadinessState.ESCALATE
@@ -16,7 +20,11 @@ def test_out_of_scope_escalates(make_assessment) -> None:
 def test_blocking_gap_requires_clarification(make_assessment) -> None:
     assessment = make_assessment(
         missing_information=[
-            MissingInformation(description="Date missing", blocking=True),
+            MissingInformation(
+                description="Date missing",
+                blocking=True,
+                follow_up_question="What is the date of the transaction?",
+            ),
         ]
     )
     assert decide_readiness(assessment) == ReadinessState.CLARIFICATION_REQUIRED

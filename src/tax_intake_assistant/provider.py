@@ -22,6 +22,14 @@ _USE_SPLIT_RE = re.compile(
 )
 
 
+class ProviderError(RuntimeError):
+    """Technical provider failure. Not a readiness state."""
+
+
+class ProviderConfigError(ProviderError):
+    """Provider is misconfigured and must not be used."""
+
+
 class Provider(Protocol):
     def structure_case(self, request_text: str) -> StructuredAssessment: ...
 

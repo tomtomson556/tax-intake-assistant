@@ -1,0 +1,37 @@
+{
+  "id": "m2-16",
+  "title": "Homeoffice ohne Fläche und Nutzungsanteil",
+  "case_type": "home_office",
+  "tags": [],
+  "request_text": "Fiktive Mandantin Nora Licht arbeitet seit Februar 2025 oft von zu Hause im Wohnzimmer am Esstisch. Miete der Wohnung ist 980 EUR kalt. Sie will das Homeoffice anteilig absetzen. Fläche des Arbeitsbereichs und wie viel das Zimmer privat genutzt wird, hat sie nicht gesagt. Bitte internes File Note.",
+  "golden": {
+    "must_contain_facts": [
+      "Arbeit von zu Hause seit Februar 2025",
+      "Wohnzimmer / Esstisch",
+      "Miete 980 EUR kalt"
+    ],
+    "must_not_invent": [
+      "Quadratmeter des Arbeitsbereichs",
+      "Nutzungsanteil",
+      "Homeoffice-Pauschale-Betrag"
+    ],
+    "missing_information": [
+      {
+        "concept": "Fläche des Arbeitsbereichs",
+        "blocking": true,
+        "follow_up_intent": "Wie groß ist der ausschließlich oder überwiegend betrieblich genutzte Bereich?"
+      },
+      {
+        "concept": "betrieblicher Nutzungsanteil",
+        "blocking": true,
+        "follow_up_intent": "In welchem Umfang wird der Bereich betrieblich und privat genutzt?"
+      }
+    ],
+    "review_point_concepts": [
+      "häusliches Arbeitszimmer vs. Homeoffice-Pauschale"
+    ],
+    "uncertainty_concepts": [],
+    "out_of_scope": false,
+    "out_of_scope_reason_concept": null
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "id": "m2-20",
+  "title": "ELSTER-Übermittlung",
+  "case_type": "elster",
+  "tags": [],
+  "request_text": "Fiktive Mandantin Mira Stahl: Bitte die Umsatzsteuer-Voranmeldung März 2025 direkt über ELSTER ans Finanzamt schicken. USt 4.200 EUR, Vorsteuer 1.100 EUR, Zahllast 3.100 EUR. Kein internes File Note, sondern echte Übermittlung.",
+  "golden": {
+    "must_contain_facts": [
+      "Umsatzsteuer-Voranmeldung März 2025",
+      "Wunsch nach ELSTER-Übermittlung",
+      "USt 4.200 EUR",
+      "Vorsteuer 1.100 EUR"
+    ],
+    "must_not_invent": [
+      "dass die Übermittlung erfolgt ist",
+      "Elster-Transfer-Ticket"
+    ],
+    "missing_information": [],
+    "review_point_concepts": [
+      "keine amtliche Übermittlung durch das System"
+    ],
+    "uncertainty_concepts": [],
+    "out_of_scope": true,
+    "out_of_scope_reason_concept": "ELSTER / amtliche Übermittlung ist außerhalb von V1"
+  }
+}

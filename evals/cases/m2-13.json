@@ -1,0 +1,34 @@
+{
+  "id": "m2-13",
+  "title": "Widersprüchliche Beträge",
+  "case_type": "equipment",
+  "tags": ["contradiction"],
+  "request_text": "Fiktiver Mandant Jonas Quell: Am 14.08.2025 habe ich einen Fotodrucker für das Büro gekauft. In der Mail von vorhin stand 1.190 EUR brutto, auf der Rechnung die ich fotografiert habe steht aber 1.490 EUR brutto inkl. 19% USt. Beides kann nicht stimmen. Bitte intern klären, was absetzbar ist, und nichts dazuerfinden.",
+  "golden": {
+    "must_contain_facts": [
+      "Fotodrucker für das Büro",
+      "14.08.2025",
+      "genannter Betrag 1.190 EUR brutto",
+      "Rechnungsbetrag 1.490 EUR brutto",
+      "widersprüchliche Beträge"
+    ],
+    "must_not_invent": [
+      "welcher Betrag der richtige ist",
+      "Netto ohne Klärung",
+      "Rabatt oder Skonto"
+    ],
+    "missing_information": [
+      {
+        "concept": "welcher Betrag gilt",
+        "blocking": true,
+        "follow_up_intent": "Welcher Betrag ist der tatsächlich gezahlte: 1.190 EUR oder 1.490 EUR?"
+      }
+    ],
+    "review_point_concepts": [
+      "Widerspruch zwischen Mail und Rechnung"
+    ],
+    "uncertainty_concepts": ["zwei abweichende Beträge genannt"],
+    "out_of_scope": false,
+    "out_of_scope_reason_concept": null
+  }
+}

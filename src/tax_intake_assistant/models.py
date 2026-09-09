@@ -18,6 +18,14 @@ class MissingInformation(BaseModel):
     blocking: bool
     follow_up_question: str | None = None
 
+    @model_validator(mode="after")
+    def follow_up_when_blocking(self) -> "MissingInformation":
+        if self.blocking and not (self.follow_up_question or "").strip():
+            raise ValueError(
+                "follow_up_question is required when blocking is true"
+            )
+        return self
+
 
 class StructuredAssessment(BaseModel):
     case_summary: str

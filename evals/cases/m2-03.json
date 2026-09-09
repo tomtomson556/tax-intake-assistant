@@ -1,0 +1,29 @@
+{
+  "id": "m2-03",
+  "title": "Reisekosten vollständig dokumentiert",
+  "case_type": "travel",
+  "tags": [],
+  "request_text": "Die fiktive Mandantin Nora Licht (Licht Demo UG) war vom 10.06.2025 bis 12.06.2025 auf einer betrieblichen Kundenreise nach Hamburg. Bahnfahrt 148 EUR brutto, Hotel 2 Nächte 240 EUR brutto, keine Verpflegungspauschale gewünscht. Anlass: Vertragsgespräch mit der ebenfalls fiktiven Nordhafen GmbH. Belege sind gescannt. Bitte internes File Note zur Reisekostenerfassung.",
+  "golden": {
+    "must_contain_facts": [
+      "betriebliche Kundenreise Hamburg",
+      "Zeitraum 10.06.2025 bis 12.06.2025",
+      "Bahn 148 EUR",
+      "Hotel 240 EUR",
+      "Anlass Vertragsgespräch"
+    ],
+    "must_not_invent": [
+      "Verpflegungsmehraufwand-Betrag",
+      "Taxi oder Flug",
+      "Kilometer"
+    ],
+    "missing_information": [],
+    "review_point_concepts": [
+      "Belege prüfen",
+      "betriebliche Veranlassung"
+    ],
+    "uncertainty_concepts": [],
+    "out_of_scope": false,
+    "out_of_scope_reason_concept": null
+  }
+}

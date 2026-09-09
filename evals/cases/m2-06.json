@@ -1,0 +1,31 @@
+{
+  "id": "m2-06",
+  "title": "AfA für Anlagegut vollständig",
+  "case_type": "depreciation",
+  "tags": [],
+  "request_text": "Fiktiver Mandant Omar Stein (Stein Produktion KG, Demo) hat am 03.01.2025 eine gebrauchte CNC-Fräse für 18.700 EUR netto angeschafft, Lieferung und Inbetriebnahme am selben Tag. Nutzungsdauer laut AfA-Tabelle Metallbearbeitung 13 Jahre, lineare AfA gewünscht, keine Sonderabschreibung beantragt. Ausschließlich betrieblich in der Werkhalle. Rechnung und Übernahmeprotokoll liegen vor. Bitte internes File Note zur Abschreibung.",
+  "golden": {
+    "must_contain_facts": [
+      "CNC-Fräse",
+      "Anschaffung 03.01.2025",
+      "18.700 EUR netto",
+      "Nutzungsdauer 13 Jahre",
+      "lineare AfA",
+      "ausschließlich betrieblich"
+    ],
+    "must_not_invent": [
+      "degressive AfA",
+      "Sonderabschreibung",
+      "anderer Kaufpreis",
+      "Restwert"
+    ],
+    "missing_information": [],
+    "review_point_concepts": [
+      "Zuordnung Anlagevermögen",
+      "AfA-Beginn und Nutzungsdauer"
+    ],
+    "uncertainty_concepts": [],
+    "out_of_scope": false,
+    "out_of_scope_reason_concept": null
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "id": "m2-10",
+  "title": "Leasing ohne Betrag",
+  "case_type": "leasing",
+  "tags": [],
+  "request_text": "Hallo, fiktiver Mandant Omar Stein hier. Wir wollen ab 01.07.2025 einen Transporter leasen, 36 Monate, Kilometervertrag, rein betrieblich für Auslieferungen. Leasinggeber ist die DemoMobil AG. Den monatlichen Leasingbetrag habe ich nicht zur Hand, Vertrag kommt noch. Bitte schon mal intern anschauen, ob das passt.",
+  "golden": {
+    "must_contain_facts": [
+      "Transporter-Leasing",
+      "Beginn 01.07.2025",
+      "36 Monate",
+      "Kilometervertrag",
+      "rein betrieblich",
+      "Leasinggeber DemoMobil AG"
+    ],
+    "must_not_invent": [
+      "monatliche Rate",
+      "Anschaffungswert",
+      "Sonderzahlung"
+    ],
+    "missing_information": [
+      {
+        "concept": "Leasingrate / Vertragssumme",
+        "blocking": true,
+        "follow_up_intent": "Wie hoch ist die monatliche Leasingrate bzw. die vertragliche Gegenleistung?"
+      }
+    ],
+    "review_point_concepts": [
+      "Leasingvertrag prüfen sobald vorhanden"
+    ],
+    "uncertainty_concepts": [],
+    "out_of_scope": false,
+    "out_of_scope_reason_concept": null
+  }
+}

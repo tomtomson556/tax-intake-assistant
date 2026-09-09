@@ -1,0 +1,44 @@
+{
+  "id": "m2-14",
+  "title": "Mehrere Kernangaben gleichzeitig fehlend",
+  "case_type": "vehicle_purchase",
+  "tags": ["multi_gap"],
+  "request_text": "Die fiktive Frost Demo GmbH will irgendwas mit einem Dienstwagen machen, neu oder gebraucht weiß ich nicht. Soll betrieblich genutzt werden, wie viel privat ist offen. Bitte Absetzbarkeit und Vorsteuer vorbereiten.",
+  "golden": {
+    "must_contain_facts": [
+      "Thema Dienstwagen",
+      "betriebliche Nutzung beabsichtigt",
+      "Privatanteil offen"
+    ],
+    "must_not_invent": [
+      "Kaufpreis",
+      "Kauf- oder Leasingdatum",
+      "Marke",
+      "Listenpreis",
+      "Fahrtenbuch"
+    ],
+    "missing_information": [
+      {
+        "concept": "Anschaffungs- oder Leasingkosten",
+        "blocking": true,
+        "follow_up_intent": "Wurde der Wagen gekauft oder geleast und zu welchen Kosten?"
+      },
+      {
+        "concept": "Datum der Anschaffung",
+        "blocking": true,
+        "follow_up_intent": "Wann wurde der Dienstwagen angeschafft oder übernommen?"
+      },
+      {
+        "concept": "Privatnutzung",
+        "blocking": true,
+        "follow_up_intent": "Wie hoch ist der private Nutzungsanteil?"
+      }
+    ],
+    "review_point_concepts": [
+      "ohne Kernangaben kein sinnvolles File Note"
+    ],
+    "uncertainty_concepts": [],
+    "out_of_scope": false,
+    "out_of_scope_reason_concept": null
+  }
+}

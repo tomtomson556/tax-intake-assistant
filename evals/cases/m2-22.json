@@ -1,0 +1,36 @@
+{
+  "id": "m2-22",
+  "title": "Scheidung plus fehlende Infos",
+  "case_type": "divorce",
+  "tags": ["oos_plus_missing"],
+  "request_text": "Fiktive Mandantin Hanna Frost: Ich lasse mich scheiden, Zugewinn und Unterhalt sind unklar. Zusätzlich habe ich irgendwann 2024 einen Laptop gekauft, Betrag und Datum weiß ich nicht. Bitte beides in einem Rutsch machen, auch die Scheidungsfolgen steuerlich gestalten.",
+  "golden": {
+    "must_contain_facts": [
+      "Scheidung / Zugewinn / Unterhalt",
+      "zusätzlich Laptopkauf 2024 ohne Betrag und Datum"
+    ],
+    "must_not_invent": [
+      "Laptop-Kaufpreis",
+      "Laptop-Kaufdatum",
+      "Unterhaltshöhe"
+    ],
+    "missing_information": [
+      {
+        "concept": "Laptop-Kaufpreis",
+        "blocking": true,
+        "follow_up_intent": "Wie hoch war der Kaufpreis des Laptops?"
+      },
+      {
+        "concept": "Laptop-Kaufdatum",
+        "blocking": true,
+        "follow_up_intent": "Wann wurde der Laptop angeschafft?"
+      }
+    ],
+    "review_point_concepts": [
+      "Gate-Priorität: out_of_scope vor blocking gaps"
+    ],
+    "uncertainty_concepts": [],
+    "out_of_scope": true,
+    "out_of_scope_reason_concept": "Scheidung und Familienfolgen außerhalb gewöhnlicher operativer Steuerfälle"
+  }
+}

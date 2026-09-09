@@ -1,0 +1,39 @@
+{
+  "id": "m2-11",
+  "title": "Reisekosten umgangssprachlich ohne Zeitraum",
+  "case_type": "travel",
+  "tags": ["typos"],
+  "request_text": "hey, hier nora licht (licht demo ug, alles fiktiv). war beruflich in münchen beim kunden, bahn war teuer so um die 160 euro glaub ich, hotel auch, hab die belege irgendwo. könnt ihr das schonmal als reisekosten vormerken? wann genau ich da war weiß ich grade net, war irgendwann im frühjahr. dankeeee",
+  "golden": {
+    "must_contain_facts": [
+      "betriebliche Reise nach München",
+      "Bahn circa 160 EUR",
+      "Hotel vorhanden",
+      "Belege unsortiert"
+    ],
+    "must_not_invent": [
+      "konkretes Reisedatum",
+      "exakter Bahnbetrag",
+      "exakter Hotelbetrag"
+    ],
+    "missing_information": [
+      {
+        "concept": "Reisezeitraum / Datum",
+        "blocking": true,
+        "follow_up_intent": "An welchen Tagen fand die Reise statt?"
+      },
+      {
+        "concept": "Hotelkosten",
+        "blocking": true,
+        "follow_up_intent": "Wie hoch waren die Hotelkosten?"
+      }
+    ],
+    "review_point_concepts": [
+      "Belege nachfordern",
+      "Umgangssprache / ungefähre Beträge"
+    ],
+    "uncertainty_concepts": ["Bahnbetrag nur ungefähr genannt"],
+    "out_of_scope": false,
+    "out_of_scope_reason_concept": null
+  }
+}

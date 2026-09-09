@@ -1,0 +1,39 @@
+{
+  "id": "m2-17",
+  "title": "Bewirtung ohne Betrag und Anlass",
+  "case_type": "entertainment",
+  "tags": [],
+  "request_text": "Fiktiver Mandant Omar Stein war letzte Woche mit irgendwem essen, irgendwo in Köln, soll betrieblich gewesen sein. Bewirtungsbeleg kommt evtl. noch. Betrag und Anlass weiß er nicht. Bitte schon als Bewirtung 70% vormerken.",
+  "golden": {
+    "must_contain_facts": [
+      "Bewirtung in Köln",
+      "letzte Woche",
+      "soll betrieblich gewesen sein",
+      "Beleg noch nicht vorhanden"
+    ],
+    "must_not_invent": [
+      "Bewirtungsbetrag",
+      "Anlass",
+      "Gäste",
+      "70-Prozent-Betrag"
+    ],
+    "missing_information": [
+      {
+        "concept": "Bewirtungsbetrag",
+        "blocking": true,
+        "follow_up_intent": "Wie hoch war der Rechnungsbetrag der Bewirtung?"
+      },
+      {
+        "concept": "betrieblicher Anlass",
+        "blocking": true,
+        "follow_up_intent": "Was war der konkrete betriebliche Anlass der Bewirtung?"
+      }
+    ],
+    "review_point_concepts": [
+      "Bewirtungsabzug ohne Beleg nicht vorbereiten"
+    ],
+    "uncertainty_concepts": [],
+    "out_of_scope": false,
+    "out_of_scope_reason_concept": null
+  }
+}
