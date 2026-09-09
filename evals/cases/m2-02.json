@@ -1,0 +1,30 @@
+{
+  "id": "m2-02",
+  "title": "Laptop als GWG mit Datum, Betrag und Nutzung",
+  "case_type": "equipment",
+  "tags": [],
+  "request_text": "Fiktiver Mandant Kai Berg (Einzelunternehmen Berg Demo, synthetisch) hat am 02.02.2025 einen Laptop für 890 EUR brutto inkl. 19% Umsatzsteuer gekauft. Ausschließlich betriebliche Nutzung im Büro, keine Privatnutzung. Rechnung der TechMarkt AG liegt vor. Bitte intern vorbereiten, ob das als GWG / Betriebsausgabe und Vorsteuer passt.",
+  "golden": {
+    "must_contain_facts": [
+      "Laptopkauf",
+      "02.02.2025",
+      "890 EUR brutto",
+      "19 Prozent Umsatzsteuer",
+      "ausschließlich betriebliche Nutzung",
+      "Rechnung vorhanden"
+    ],
+    "must_not_invent": [
+      "Nettobetrag, falls nicht genannt",
+      "anderes Kaufdatum",
+      "private Nutzung"
+    ],
+    "missing_information": [],
+    "review_point_concepts": [
+      "GWG-Grenze / Zuordnung prüfen",
+      "Rechnung prüfen"
+    ],
+    "uncertainty_concepts": [],
+    "out_of_scope": false,
+    "out_of_scope_reason_concept": null
+  }
+}

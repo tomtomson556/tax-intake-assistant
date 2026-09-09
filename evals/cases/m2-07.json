@@ -1,0 +1,30 @@
+{
+  "id": "m2-07",
+  "title": "Einfache Vorsteuer mit Rechnungsangaben",
+  "case_type": "input_tax",
+  "tags": [],
+  "request_text": "Die fiktive Frost Demo GmbH (Hanna Frost) hat am 21.05.2025 Büromaterial bei der Papierquelle GmbH gekauft. Rechnungsnummer 4511-B, Netto 210,00 EUR, USt 19% = 39,90 EUR, brutto 249,90 EUR. Leistungsdatum 21.05.2025, Vorsteuerabzug gewünscht, Rechnung mit ausgewiesener USt liegt vor. Bitte intern die Vorsteuer vorbereiten, kein ELSTER.",
+  "golden": {
+    "must_contain_facts": [
+      "Büromaterial",
+      "Rechnung 4511-B",
+      "21.05.2025",
+      "210 EUR netto",
+      "39,90 EUR USt",
+      "Rechnung mit ausgewiesener USt"
+    ],
+    "must_not_invent": [
+      "andere Steuerquote",
+      "ELSTER-Übermittlung",
+      "weitere Rechnungen"
+    ],
+    "missing_information": [],
+    "review_point_concepts": [
+      "formelle Rechnungsangaben",
+      "Vorsteuerabzug"
+    ],
+    "uncertainty_concepts": [],
+    "out_of_scope": false,
+    "out_of_scope_reason_concept": null
+  }
+}

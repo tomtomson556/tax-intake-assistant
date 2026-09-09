@@ -1,0 +1,28 @@
+{
+  "id": "m2-21",
+  "title": "Erbrecht und Erbschaftsteuer",
+  "case_type": "inheritance",
+  "tags": [],
+  "request_text": "Fiktiver Mandant Jonas Quell: Meine Tante ist am 02.02.2025 gestorben, ich erbe das Haus in Leipzig (Grundbesitzwert laut Gutachten 420.000 EUR) und ein Depot. Bitte Erbschaftsteuererklärung und Pflichtteilsfragen intern lösen.",
+  "golden": {
+    "must_contain_facts": [
+      "Erbfall 02.02.2025",
+      "Haus in Leipzig",
+      "Grundbesitzwert 420.000 EUR",
+      "Depot",
+      "Erbschaftsteuer und Pflichtteil"
+    ],
+    "must_not_invent": [
+      "Steuerklasse",
+      "Freibetrag",
+      "andere Vermögenswerte"
+    ],
+    "missing_information": [],
+    "review_point_concepts": [
+      "Erbrecht liegt außerhalb gewöhnlicher operativer Steuerfälle"
+    ],
+    "uncertainty_concepts": [],
+    "out_of_scope": true,
+    "out_of_scope_reason_concept": "Erbrecht / Erbschaftsteuer außerhalb des V1-Fallkatalogs"
+  }
+}

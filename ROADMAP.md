@@ -12,11 +12,11 @@ This milestone does **not** include the business workflow.
 
 First application path with a **FakeProvider** and a small **server-rendered UI**: unstructured request in, structured assessment, exact readiness gate, draft only when `DRAFT_READY`, every draft `UNREVIEWED`.
 
-## M2 — One real provider and eval set (next)
+## M2 — One real provider and eval set (completed)
 
-Exactly **one** real provider, structured output, prompt version, and 20–30 eval cases.
+Exactly **one** real provider (OpenAI, `gpt-5.6-sol`), structured output, prompt version `m2-v1`, and 24 synthetic eval cases.
 
-## M3 — Product evaluation
+## M3 — Product evaluation (next)
 
 Product evaluation and error analysis against the metrics in [`PRODUCT.md`](PRODUCT.md).
 

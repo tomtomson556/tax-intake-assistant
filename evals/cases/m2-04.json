@@ -1,0 +1,29 @@
+{
+  "id": "m2-04",
+  "title": "Homeoffice mit Fläche und Nutzungsanteil",
+  "case_type": "home_office",
+  "tags": [],
+  "request_text": "Fiktiver Mandant Jonas Quell (Quell Beratung e.K.) nutzt seit 01.01.2025 ein Arbeitszimmer in der Mietwohnung. Zimmer 12,5 m², Wohnung 78 m², nahezu ausschließlich betriebliche Nutzung (geschätzt 95 Prozent, Rest kurzes privates Telefonieren). Miete kalt 1.120 EUR, Nebenkosten 180 EUR monatlich. Er möchte die anteiligen Kosten intern vorbereiten lassen, kein Mandantenschreiben.",
+  "golden": {
+    "must_contain_facts": [
+      "Arbeitszimmer seit 01.01.2025",
+      "12,5 m² von 78 m²",
+      "Miete 1.120 EUR",
+      "Nebenkosten 180 EUR",
+      "nahezu ausschließlich betriebliche Nutzung"
+    ],
+    "must_not_invent": [
+      "Kauf der Wohnung",
+      "anderes Mietverhältnis",
+      "genaue 100 Prozent ohne den genannten Rest"
+    ],
+    "missing_information": [],
+    "review_point_concepts": [
+      "häusliches Arbeitszimmer vs. Homeoffice-Pauschale",
+      "Nutzungsanteil"
+    ],
+    "uncertainty_concepts": ["Nutzungsanteil nicht exakt 100 Prozent"],
+    "out_of_scope": false,
+    "out_of_scope_reason_concept": null
+  }
+}

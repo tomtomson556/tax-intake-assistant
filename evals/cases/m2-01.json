@@ -1,0 +1,30 @@
+{
+  "id": "m2-01",
+  "title": "Fahrzeugkauf mit ungefährer betrieblicher Nutzung",
+  "case_type": "vehicle_purchase",
+  "tags": ["approximate"],
+  "request_text": "Hallo, hier ist die fiktive Mandantin Hanna Frost von der Frost Demo GmbH (kein echter Mandant). Wir haben am 12.03.2024 einen gebrauchten Lieferwagen für 28.500 EUR netto gekauft. Die betriebliche Nutzung liegt bei ca. 80 Prozent, privat fährt sie kaum. Bitte kurz prüfen, ob Anschaffung und Vorsteuer ins File Note können. Rechnung liegt in der Kanzlei.",
+  "golden": {
+    "must_contain_facts": [
+      "gebrauchter Lieferwagen",
+      "Kaufdatum 12.03.2024",
+      "Kaufpreis 28.500 EUR netto",
+      "betriebliche Nutzung ca. 80 Prozent",
+      "Rechnung vorhanden"
+    ],
+    "must_not_invent": [
+      "genaue Nutzungsquote ohne ca.",
+      "Kilometerleistung",
+      "Listenpreis",
+      "anderer Kaufpreis"
+    ],
+    "missing_information": [],
+    "review_point_concepts": [
+      "betriebliche versus private Nutzung",
+      "Beleg / Rechnung prüfen"
+    ],
+    "uncertainty_concepts": ["betriebliche Nutzung nur ungefähr angegeben"],
+    "out_of_scope": false,
+    "out_of_scope_reason_concept": null
+  }
+}

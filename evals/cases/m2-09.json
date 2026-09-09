@@ -1,0 +1,41 @@
+{
+  "id": "m2-09",
+  "title": "Sehr kurze Laptop-Anfrage mit mehreren Lücken",
+  "case_type": "equipment",
+  "tags": ["multi_gap"],
+  "request_text": "Laptop absetzen? Gruß, fiktive Mandantin Hanna Frost",
+  "golden": {
+    "must_contain_facts": [
+      "Anfrage zur Absetzbarkeit eines Laptops"
+    ],
+    "must_not_invent": [
+      "Kaufpreis",
+      "Kaufdatum",
+      "betriebliche Nutzung",
+      "Rechnungsdaten"
+    ],
+    "missing_information": [
+      {
+        "concept": "Kaufpreis / Betrag",
+        "blocking": true,
+        "follow_up_intent": "Wie hoch war der Kaufpreis?"
+      },
+      {
+        "concept": "Anschaffungsdatum",
+        "blocking": true,
+        "follow_up_intent": "Wann wurde der Laptop angeschafft?"
+      },
+      {
+        "concept": "betriebliche Nutzung",
+        "blocking": true,
+        "follow_up_intent": "Wird der Laptop betrieblich genutzt und in welchem Umfang?"
+      }
+    ],
+    "review_point_concepts": [
+      "ohne Kernangaben kein sinnvolles File Note"
+    ],
+    "uncertainty_concepts": [],
+    "out_of_scope": false,
+    "out_of_scope_reason_concept": null
+  }
+}

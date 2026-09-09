@@ -1,0 +1,40 @@
+{
+  "id": "m2-15",
+  "title": "Fehlende Rechnung und fehlender Betrag",
+  "case_type": "missing_invoice",
+  "tags": ["multi_gap"],
+  "request_text": "Fiktiver Mandant Kai Berg: Ich habe im März 2025 Büromöbel beim Möbelhof gekauft, die Rechnung ist weg und den Preis weiß ich auch nicht mehr. Überweisung war von meinem betrieblichen Konto. Bitte Vorsteuer und Betriebsausgabe trotzdem schon einbuchen.",
+  "golden": {
+    "must_contain_facts": [
+      "Büromöbel",
+      "März 2025",
+      "Händler Möbelhof",
+      "Rechnung fehlt",
+      "Zahlung vom betrieblichen Konto"
+    ],
+    "must_not_invent": [
+      "Kaufpreis",
+      "USt-Betrag",
+      "Rechnungsnummer"
+    ],
+    "missing_information": [
+      {
+        "concept": "Rechnung / Beleg",
+        "blocking": true,
+        "follow_up_intent": "Kann die Rechnung oder ein Ersatzbeleg beschafft werden?"
+      },
+      {
+        "concept": "Kaufpreis / Zahlbetrag",
+        "blocking": true,
+        "follow_up_intent": "Welcher Betrag wurde für die Büromöbel gezahlt?"
+      }
+    ],
+    "review_point_concepts": [
+      "Vorsteuer ohne Rechnung",
+      "Kontoauszug als Hilfsbeleg"
+    ],
+    "uncertainty_concepts": [],
+    "out_of_scope": false,
+    "out_of_scope_reason_concept": null
+  }
+}

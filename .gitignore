@@ -24,5 +24,9 @@ htmlcov/
 .env.*
 !.env.example
 
+# Eval run artifacts (keep the directory's gitignore)
+evals/results/*
+!evals/results/.gitignore
+
 # OS
 .DS_Store

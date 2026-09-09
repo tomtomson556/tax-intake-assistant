@@ -1,0 +1,38 @@
+{
+  "id": "m2-12",
+  "title": "Ungefähre Angabe unbrauchbar",
+  "case_type": "equipment",
+  "tags": ["approximate"],
+  "request_text": "Fiktive Mandantin Mira Stahl hier. Wir haben irgendwann 2024 eine gebrauchte Werkstattpresse gekauft, hat 'ein paar tausend' gekostet, vielleicht drei oder vier, genau weiß keiner. Läuft nur in der Halle. Rechnung suchen wir noch. Bitte schon ein File Note zur Absetzung machen.",
+  "golden": {
+    "must_contain_facts": [
+      "gebrauchte Werkstattpresse",
+      "Anschaffung irgendwann 2024",
+      "Preis nur als ein paar tausend umschrieben",
+      "betriebliche Nutzung in der Halle"
+    ],
+    "must_not_invent": [
+      "konkreter Kaufpreis",
+      "genaues Kaufdatum",
+      "Rechnungsnummer"
+    ],
+    "missing_information": [
+      {
+        "concept": "konkreter Kaufpreis",
+        "blocking": true,
+        "follow_up_intent": "Wie hoch war der genaue Kaufpreis der Presse?"
+      },
+      {
+        "concept": "genaues Anschaffungsdatum",
+        "blocking": true,
+        "follow_up_intent": "An welchem Tag wurde die Presse angeschafft?"
+      }
+    ],
+    "review_point_concepts": [
+      "Rechnung nachfordern"
+    ],
+    "uncertainty_concepts": ["Betrag nur als ungefähre Umschreibung"],
+    "out_of_scope": false,
+    "out_of_scope_reason_concept": null
+  }
+}

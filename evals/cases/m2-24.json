@@ -1,0 +1,27 @@
+{
+  "id": "m2-24",
+  "title": "Strafverfahren und Steuerfahndung",
+  "case_type": "criminal_investigation",
+  "tags": [],
+  "request_text": "Fiktive Mandantin Nora Licht: Gestern war die Steuerfahndung da, Durchsuchungsbeschluss, es läuft ein Strafverfahren wegen Verdachts der Steuerhinterziehung. Bitte intern schon eine Verteidigungsstrategie und ein File Note schreiben, was wir dem Finanzamt antworten.",
+  "golden": {
+    "must_contain_facts": [
+      "Steuerfahndung",
+      "Durchsuchungsbeschluss",
+      "Strafverfahren",
+      "Verdacht der Steuerhinterziehung"
+    ],
+    "must_not_invent": [
+      "Anklage",
+      "Beschuldigtenvernehmung",
+      "Tatvorwurf im Detail"
+    ],
+    "missing_information": [],
+    "review_point_concepts": [
+      "sofortige menschliche Übernahme / Strafverteidigung"
+    ],
+    "uncertainty_concepts": [],
+    "out_of_scope": true,
+    "out_of_scope_reason_concept": "Strafverfahren / Steuerfahndung außerhalb des V1-Intake"
+  }
+}

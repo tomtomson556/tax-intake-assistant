@@ -1,0 +1,26 @@
+{
+  "id": "m2-23",
+  "title": "Insolvenz",
+  "case_type": "insolvency",
+  "tags": [],
+  "request_text": "Fiktiver Mandant Omar Stein: Die Stein Produktion KG ist zahlungsunfähig, wir wollen nächste Woche Insolvenz anmelden. Bitte intern die Steuererklärungen so vorbereiten, dass das Insolvenzgericht nichts Nachteiliges findet, und Gläubigerlisten machen.",
+  "golden": {
+    "must_contain_facts": [
+      "Zahlungsunfähigkeit",
+      "geplante Insolvenz",
+      "Stein Produktion KG"
+    ],
+    "must_not_invent": [
+      "Insolvenzeröffnung",
+      "Gläubigerliste",
+      "Insolvenzverwalter"
+    ],
+    "missing_information": [],
+    "review_point_concepts": [
+      "Insolvenz ist außerhalb des V1-Intake"
+    ],
+    "uncertainty_concepts": [],
+    "out_of_scope": true,
+    "out_of_scope_reason_concept": "Insolvenz außerhalb gewöhnlicher operativer Steuerfälle"
+  }
+}
